@@ -30,3 +30,7 @@ When Codex and/or Copilot review bots are configured for the repo, trigger re-re
 - Use `DELETE /notifications/threads/{id}` (HTTP 204) to mark notifications as **done** (removes from inbox/moves to Done tab).
 - Do NOT use `PATCH /notifications/threads/{id}` (marks as read but leaves in inbox).
 - After processing notifications, bulk-delete any remaining read-but-not-done notifications with the same DELETE API.
+
+## Post-merge cleanup
+
+- After completing a PR, merge it, sync the target branch, and delete the PR branch locally and remotely.
