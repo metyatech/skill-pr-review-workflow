@@ -19,13 +19,13 @@ npx skills add metyatech/skill-pr-review-workflow
 
 ### Claude Code
 
-```
+```text
 /pr-review-workflow
 ```
 
 ### Codex
 
-```
+```text
 $pr-review-workflow
 ```
 
