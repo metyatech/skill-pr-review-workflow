@@ -1,0 +1,29 @@
+{
+  "name": "skill-pr-review-workflow",
+  "version": "1.0.0",
+  "description": "Agent skill for handling PR review feedback loops, re-requesting reviews, and managing GitHub notifications.",
+  "scripts": {
+    "verify": "npm run lint && npm run format:check",
+    "lint": "markdownlint . --ignore node_modules",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "agent-skill"
+  ],
+  "author": "metyatech",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.1",
+    "markdownlint-cli": "^0.47.0",
+    "prettier": "^3.8.1"
+  },
+  "lint-staged": {
+    "*.{md,json,yml}": [
+      "prettier --write",
+      "markdownlint"
+    ]
+  }
+}

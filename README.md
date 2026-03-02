@@ -19,14 +19,40 @@ npx skills add metyatech/skill-pr-review-workflow
 
 ### Claude Code
 
-```
+```text
 /pr-review-workflow
 ```
 
 ### Codex
 
-```
+```text
 $pr-review-workflow
+```
+
+## Development
+
+### Verification
+
+Run the full verification suite (linting and formatting checks):
+
+```sh
+npm run verify
+```
+
+### Formatting
+
+Format all files:
+
+```sh
+npm run format
+```
+
+### Linting
+
+Lint markdown files:
+
+```sh
+npm run lint
 ```
 
 ## License
