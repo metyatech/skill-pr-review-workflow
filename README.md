@@ -29,6 +29,10 @@ npx skills add metyatech/skill-pr-review-workflow
 $pr-review-workflow
 ```
 
+## Testing
+
+See [tests/scenarios.md](tests/scenarios.md) for example scenarios and expected agent actions. These can be used to manually verify the skill's logic or as a reference for implementing automated tests.
+
 ## License
 
 MIT
