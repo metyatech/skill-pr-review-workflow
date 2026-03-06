@@ -8,11 +8,13 @@ description: Use when addressing PR review feedback, re-requesting reviews, hand
 ## Addressing review feedback
 
 - After addressing PR review feedback, resolve the corresponding review thread(s) before concluding; if you lack permission, state it explicitly.
+  - **Resolve Thread API:** `PATCH /repos/{owner}/{repo}/pulls/comments/{comment_id}` with `{"resolved":true}` (requires Write access).
 - Before re-requesting review after addressing feedback, run the relevant verification suite and summarize results (commands + outcomes) in the PR comment/description.
 
 ## Re-requesting reviews
 
 - After pushing fixes for PR review feedback, re-request review only from reviewer(s) who posted the addressed feedback in the current round.
+  - **Selective Reviewer Logic:** Identify the "current round" by fetching the latest reviews via `gh pr view --json reviews`. Filter for reviewers who provided `CHANGES_REQUESTED` or `COMMENTED` reviews that were addressed in the current push.
 - Do not re-request review from reviewers (including AI reviewers) who did not post addressed feedback, or who already indicated no actionable issues.
 - If no applicable reviewer remains, ask who should review next.
 
@@ -22,8 +24,9 @@ When Codex and/or Copilot review bots are configured for the repo, trigger re-re
 
 - For Codex re-review (only when applicable): comment `@codex review` on the PR.
 - For Copilot re-review (only when applicable): use the GitHub API to remove and re-request the bot reviewer `copilot-pull-request-reviewer[bot]` (do not rely on UI-based reviewer assignment).
-  - Remove: `DELETE /repos/{owner}/{repo}/pulls/{pr}/requested_reviewers` with body `{"reviewers":["copilot-pull-request-reviewer[bot]"]}`
-  - Add: `POST /repos/{owner}/{repo}/pulls/{pr}/requested_reviewers` with body `{"reviewers":["copilot-pull-request-reviewer[bot]"]}`
+  - **Dismiss Previous Review (if needed):** If the bot has a persistent `CHANGES_REQUESTED` status, consider dismissing the review first via `PUT /repos/{owner}/{repo}/pulls/{pr}/reviews/{review_id}/dismissals` with `{"message": "Re-requesting review after fixes."}`.
+  - **Remove Reviewer:** `DELETE /repos/{owner}/{repo}/pulls/{pr}/requested_reviewers` with body `{"reviewers":["copilot-pull-request-reviewer[bot]"]}`
+  - **Add Reviewer:** `POST /repos/{owner}/{repo}/pulls/{pr}/requested_reviewers` with body `{"reviewers":["copilot-pull-request-reviewer[bot]"]}`
 
 ## GitHub notification management
 
