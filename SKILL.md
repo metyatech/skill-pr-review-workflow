@@ -9,6 +9,7 @@ description: Use when addressing PR review feedback, re-requesting reviews, hand
 
 - After addressing PR review feedback, resolve the corresponding review thread(s) before concluding; if you lack permission, state it explicitly.
 - Before re-requesting review after addressing feedback, run the relevant verification suite and summarize results (commands + outcomes) in the PR comment/description.
+- For feedback caused by an agent-originated miss or a reusable reasoning gap, explicitly assess whether recurrence prevention belongs in tests/checks, skills, or rules. When a rule/skill update is warranted, make that update as part of the same change set; when it is not warranted, state briefly why the earliest reusable gate is elsewhere.
 
 ## Re-requesting reviews
 
